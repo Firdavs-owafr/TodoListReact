@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  width: 100%;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../src/img/background-img.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  background-color: #171823;
+  font-family: 'Josefin Sans';
+}
+.App{
+  width: 600px;
+  height: 440px;
+  /* background-color:#25273D; */
+  /* position: absolute; */
+  margin-top: 70px;
+}
