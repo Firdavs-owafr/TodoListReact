@@ -1,10 +1,14 @@
+import React,{ Component } from 'react';
 import './Footer.scss'
 
 
-export default function Footer () {
+class Footer extends Component {
+   render(props){
+    // console.log(this.props);
+    const {filterData,clearCompleted} = this.props;
     return (
         <div className="Footer">
-            <div className='items'> <span>3</span> items left  </div>
+            <div className='items'> <span>{filterData}</span> items left  </div>
             <div className="text-tab">
                     <ul>
                         <li>All</li>    
@@ -13,7 +17,9 @@ export default function Footer () {
                          
                     </ul>               
             </div>
-            <div className="clear">Clear Completed</div>
+            <div className="clear" onClick={clearCompleted}>Clear Completed</div>
         </div>
     )
+   }
 }
+export default Footer;
