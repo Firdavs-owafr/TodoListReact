@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React,{ Component } from "react";
 import EmployesItemss from './EmployesItemss'
 
 class EmployesList extends Component {
@@ -7,7 +7,7 @@ class EmployesList extends Component {
         let arr = data.map((employ) => {
             let { id,name, completed } = employ
             
-            return <EmployesItemss
+               return <EmployesItemss
                 id={id}
                 name={name}
                 key={id}

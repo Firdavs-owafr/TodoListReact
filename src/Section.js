@@ -2,10 +2,11 @@ import { Component } from 'react';
 import './Section.scss'
 import Footer from './Footer';
 import EmployesList from './EmployesList';
+import Form from './Form';
 
 class Section extends Component {
     constructor(props){
-        super(props)
+        super(props);   
         this.state = {
             data: [
                 {
@@ -23,9 +24,20 @@ class Section extends Component {
                     name: 'VueJS',
                     completed: false,
                 },
-            ]
+            ],
+            dataId: 3,
+            searchValue: ''
         }
+        this.setDataa = this.setDataa.bind(this)
     }
+
+    setDataa(arg){
+        let newData = [...this.state.data, {...arg, id: this.state.dataId + 1}]
+        this.setState(( { dataId,data } ) => {
+            return {data: newData,dataId: dataId + 1}
+        })
+    }  
+
 
     onChangeIncrease = (id,incr) => {
         this.setState(( {data} ) => {
@@ -49,32 +61,57 @@ class Section extends Component {
 
      clickDelete = () => {
         this.setState(({data}) => {
-            let deletee = this.state.data.filter((elem) => {
+            let deletee = data.filter((elem) => {
                 return !elem.completed 
             })
             return {data : [...deletee]}
         })
     }
 
+    allActive = () => {
+        console.log('active');
+        this.setState(({data}) => {
+            let active = data.filter((elem) => {
+                return !elem.completed 
+            })
+            return {data : [...active]}
+        })
+    }
+
+    clearCom = () => {
+        console.log('compl');
+        this.setState(({data}) => {
+            let active = data.filter((elem) => {
+                return !elem.completed 
+            })
+            return {data : [...active]}
+        })
+    }
+
     render() {
-        const {data} = this.state
+        const {data} = this.state;
 
         let filterData = data.filter(item => !item.completed).length
 
-        // let clickDelete = data.filter(item => item.completed).length
-
         return (
-            <div className="Section">
-                <EmployesList 
-                    data={data}
-                    onChangeIncrease={this.onChangeIncrease}
-                    onDelete={this.onDelete}
+            <>
+                <Form 
+                    setData={this.setDataa}
                 />
-                <Footer 
-                    filterData={filterData}
-                    clearCompleted={this.clickDelete}
-                />
-            </div>
+                <div className="Section">                
+                    <EmployesList 
+                        data={data}
+                        onChangeIncrease={this.onChangeIncrease}
+                        onDelete={this.onDelete}
+                    />
+                    <Footer 
+                        filterData={filterData}
+                        clearCompleted={this.clickDelete}
+                        allActive={this.allActive}
+                        clearCom={this.clearCom}
+                    />
+                </div>
+            </>
         )
 
     }
